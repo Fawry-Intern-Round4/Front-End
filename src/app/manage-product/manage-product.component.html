@@ -1,0 +1,19 @@
+<!-- manage-product.component.html -->
+<div *ngIf="selectedProduct || isAddMode">
+    <h1>{{ isAddMode ? 'Add Product' : 'Edit Product' }}</h1>
+    <form (ngSubmit)="isAddMode ? addProduct() : updateProductInfo()" routerLink="/manage/products">
+      <label for="name">Name:</label>
+      <input [(ngModel)]="selectedProduct.name" id="name" name="name">
+      <label for="image">Image Link:</label>
+      <input [(ngModel)]="selectedProduct.image" id="image" name="image" (change)="onFileChange($event)">
+      <img [src]="selectedProduct.image" *ngIf="selectedProduct.image" style="height: 200px; width:200px" alt="${{selectedProduct.name}} image">
+      <label for="code">Code:</label>
+      <input [(ngModel)]="selectedProduct.code" id="code" name="code">
+      <label for="description">Description:</label>
+      <textarea [(ngModel)]="selectedProduct.description" id="description" name="description"></textarea>
+      <label for="price">Price:</label>
+      <input [(ngModel)]="selectedProduct.price" id="price" name="price">
+      <button type="submit" style="width: auto;">{{ isAddMode ? 'Add Product' : 'Save Changes' }}</button>
+    </form>
+  </div>
+  
