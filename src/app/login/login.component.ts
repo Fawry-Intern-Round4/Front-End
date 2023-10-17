@@ -10,24 +10,24 @@ export class LoginComponent {
 
     public username: string = '';
     public password: string = '';
-    public error: string = '';
+    public message: string = '';
 
     constructor(private userService: UserService) {}
 
-    public login(): void {
+    login() {
+        this.userService.login({username: this.username, password: this.password})
+            .subscribe(
+                (response) => {
+                    this.message = 'Login successful!';
+                    localStorage.setItem('token', response.token);
+                },
+                (error) => {
+                    this.message = 'Login failed. Please check your credentials.';
+                }
+            );
+    }  
 
-      const credentials = { username: this.username, password: this.password };
-
-      console.log('Attempting login with credentials:', this.username, this.password);
-
-        this.userService.login(credentials).subscribe((response) => {
-            if (response.success) {
-                this.error = '';
-                localStorage.setItem('token', response.token);
-                localStorage.setItem('username', response.username);
-            } else {
-                this.error = response.message;
-            }
-        });
+    logout() {
+        localStorage.removeItem('token');
     }
-}
+  }
