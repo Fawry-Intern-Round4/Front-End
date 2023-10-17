@@ -17,13 +17,13 @@ export class ManageAllProductsComponent implements OnInit{
   }
 
   getAllProducts() {
-    this.service.getAllProducts().subscribe(
-      (data) => {this.products = data},
-      (error) => {
+    this.service.getAllProducts().subscribe({
+      next: (data) => { this.products = data },
+      error: (error) => {
         this.products = [];
         console.log(error);
       }
-    );
-  }
+    });
+  }  
 }
 
