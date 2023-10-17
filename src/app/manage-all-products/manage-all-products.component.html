@@ -4,7 +4,7 @@
     </div>
     <div class="grid">
       <div *ngFor="let product of products" class="product-row">
-        <img [src]="product.image" alt="Product Image">
+        <img [src]="product.image" alt="${{product.name}} product image">
         <div class="product-info">
           <h2>{{ product.name }}</h2>
           <p><strong>ID:</strong> {{ product.id }}</p>
