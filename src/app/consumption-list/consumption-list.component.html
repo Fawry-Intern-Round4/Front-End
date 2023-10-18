@@ -1,0 +1,23 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Actual Discount</th>
+            <th>Consumption Date</th>
+            <th>Customer Email</th>
+            <th>Order Id</th>
+            <th>Order Price</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let temp of consumptions">
+            <td>{{temp.actualDiscount}}</td>
+            <td>{{temp.consumptionDate}}</td>
+            <td>{{temp.customerEmail}}</td>
+            <td>{{temp.orderId}}</td>
+            <td>{{temp.actualDiscount}}</td>
+        </tr>
+
+    </tbody>
+</table>
+
