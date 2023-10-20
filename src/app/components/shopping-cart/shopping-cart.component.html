@@ -1,0 +1,54 @@
+
+<div class="cart-container" *ngIf="cartService.getCartItems().length === 0">
+    <p>No items in the cart. Get back to explore our product catalog.</p>
+</div>
+
+<div class="cart-container" *ngIf="cartService.getCartItems().length > 0">
+    <div class="cart-items-grid">
+      <h2>Shopping Cart Items</h2>
+      <div *ngFor="let item of cartService.getCartItems()" class="cart-item" >
+        <div class="cart-item-details">
+          <h2>{{item.name}}</h2>
+          <p>Price: <span class="price">{{item.price | currency}}</span></p>
+          <div class="quantity-container">
+            <p class="quantity-label">Required Quantity:</p>
+            <button (click)="decrementProductQuantity(item.productId, item.storeId)" class="quantity-button">-</button>
+            <span class="quantity">{{item.quantity}}</span>
+            <button (click)="incrementProductQuantity(item.productId, item.storeId)" class="quantity-button">+</button>
+          </div>
+        </div>
+        <img [src]="item.image" alt="Product Image" class="cart-item-image">
+      </div>
+    </div>
+    <div class="cart-form">
+      <h2>Payment Information</h2>
+      <form (ngSubmit)="createOrder()">
+        <div class="form-field">
+          <label for="couponCode">Coupon Code</label>
+          <input type="text" id="couponCode" (change)="applyCouponCode($event)">
+        </div>
+        <div class="form-field">
+          <p *ngIf="couponErrorMessage" class="alert alert-danger" role="alert">{{couponErrorMessage}}</p>
+          <p>Invoice amount: <span id="invoiceAmount" [style.text-decoration]="invoiceAmountAfterDiscount && !couponErrorMessage ? 'line-through' : 'none'">
+            {{invoiceAmount | currency}}
+          </span>
+          </p>
+          <p *ngIf="invoiceAmountAfterDiscount && !couponErrorMessage">Invoice amount after coupon discount: <span style="color: green; font-weight: 18px;">{{invoiceAmountAfterDiscount| currency}}  </span></p>
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email">
+        </div>
+        <div class="form-field">
+          <label for="creditCardNumber">Credit Card Number</label>
+          <input type="text" id="creditCardNumber">
+        </div>
+        <div class="form-field">
+          <label for="cvv">CVV</label>
+          <input type="text" id="cvv">
+        </div>        
+        <div *ngIf="createOrderErrorMessage" class="alert alert-danger" role="alert">{{createOrderErrorMessage}}</div>
+        <button type="submit" class="submit-button">Pay Now</button>
+      </form>
+    </div>
+  </div>

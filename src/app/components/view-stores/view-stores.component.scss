@@ -1,0 +1,35 @@
+
+.store-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+  
+.store-card {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 40px;
+    text-decoration: none;
+    color: black;
+    transition: transform 0.3s ease;
+}
+
+.store-card h2 {
+    margin: 0 0 10px 0;
+    font-size: 24px;
+}
+
+.store-card p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.store-card h2, .store-card p {
+    color: black;
+}
+
+.store-card:hover {
+    transform: scale(1.05); 
+}
+
