@@ -30,9 +30,7 @@ export class StoreHomeComponent {
           this.getStoreProducts(Number(storeId));
         },
         error: (error: HttpErrorResponse) => {
-          if (error.error.message == Messages.STORE_NOT_FOUND) {
-            this.router.navigateByUrl('/store');
-          }
+          this.router.navigateByUrl('/store');
         }
       });
     } 
@@ -49,37 +47,3 @@ export class StoreHomeComponent {
     });
   }
 }
-
-  
-
-    // orderRequestItems: { [productId: number]: OrderRequestItem } = {};
-  // orderRequestItem!: OrderRequestItem;
-
-    // incrementProductQuantity(productId: number) {
-  //   if (this.orderRequestItems[productId]) {
-  //     this.orderRequestItems[productId].quantity += 1;
-  //   } else {
-  //     this.orderRequestItems[productId].quantity = 1;
-  //   }
-  // }
-
-  // decrementProductQuantity(productId: number) {
-  //   if (this.orderRequestItems[productId] && this.orderRequestItems[productId].quantity) {
-  //     this.orderRequestItems[productId].quantity -= 1;
-  //     if (this.orderRequestItems[productId].quantity == 0){
-  //       delete this.orderRequestItems[productId];
-  //     }
-  //   }
-  // }
-
-    // updateShoppingCart(productId: number, storeId: number) {
-  //   if (this.orderRequestItems[productId]) {
-  //     delete this.orderRequestItems[productId];
-  //   } else {
-  //     this.orderRequestItem = new OrderRequestItem();
-  //     this.orderRequestItem.productId = productId;
-  //     this.orderRequestItem.storeId = storeId;
-  //     this.orderRequestItem.quantity = 1;
-  //     this.orderRequestItems[productId] = this.orderRequestItem;
-  //   }
-  // }
