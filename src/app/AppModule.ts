@@ -21,6 +21,8 @@ import { ViewStoresComponent } from './components/view-stores/view-stores.compon
 import { StoreHomeComponent } from './components/store-home/store-home.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { ManageAllProductsComponent } from './components/manage-all-products/manage-all-products.component';
+import { ManageProductComponent } from './components/manage-product/manage-product.component';
   
 
 @NgModule({
@@ -30,6 +32,8 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
     StoreHomeComponent,
     ShoppingCartComponent,
     OrderHistoryComponent,
+    ManageAllProductsComponent,
+    ManageProductComponent
   ],
 
   imports: [
