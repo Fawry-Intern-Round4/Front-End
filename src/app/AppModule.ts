@@ -23,6 +23,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { ManageAllProductsComponent } from './components/manage-all-products/manage-all-products.component';
 import { ManageProductComponent } from './components/manage-product/manage-product.component';
+import { ConsumptionListComponent } from './components/consumption-list/consumption-list.component';
+import { CouponListComponent } from './components/coupon-list/coupon-list.component';
   
 
 @NgModule({
@@ -33,7 +35,9 @@ import { ManageProductComponent } from './components/manage-product/manage-produ
     ShoppingCartComponent,
     OrderHistoryComponent,
     ManageAllProductsComponent,
-    ManageProductComponent
+    ManageProductComponent,
+    ConsumptionListComponent,
+    CouponListComponent
   ],
 
   imports: [

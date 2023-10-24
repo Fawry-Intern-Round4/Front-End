@@ -1,0 +1,33 @@
+<h2>Coupons List</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Remaining Usages</th>
+            <th>Expiry Date</th>
+            <th>Value</th>
+            <th>Expire Date</th>
+            <th>Active</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let coupon of Coupons">
+            <td>{{coupon.code}}</td>
+            <td>{{coupon.remainingUsages}}</td>
+            <td>{{coupon.expiryDate}}</td>
+            <td>{{coupon.value}}</td>
+            <td>{{coupon.expiryDate}}</td>
+            <td>{{coupon.active}}</td>
+            <td>{{coupon.type}}</td>
+            <td>
+                <button class="btn btn-primary" (click)="deactivateCoupon(coupon.code)">Deactivate</button>
+                
+            </td>
+            
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary" (click)="createCoupon()">Create Coupon</button>
+
