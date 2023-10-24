@@ -1,4 +1,3 @@
-// app-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -8,12 +7,14 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { ManageAllProductsComponent } from './components/manage-all-products/manage-all-products.component';
 import { ManageProductComponent } from './components/manage-product/manage-product.component';
+import { ConsumptionListComponent } from './components/consumption-list/consumption-list.component';
 
 const routes: Routes = [
   { path : 'manage/products', component: ManageAllProductsComponent},
   { path : 'manage/products/add', component: ManageProductComponent},
   { path : 'manage/products/:id', component: ManageProductComponent},
   { path : 'manage/order', component: OrderHistoryComponent},
+  { path : 'manage/consumption', component : ConsumptionListComponent},
   { path : 'store/shopping-cart', component: ShoppingCartComponent},
   { path : 'store/:storeId', component: StoreHomeComponent},
   { path : 'store', component: ViewStoresComponent},

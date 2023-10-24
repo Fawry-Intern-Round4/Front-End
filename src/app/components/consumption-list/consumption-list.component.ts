@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Consumption } from '../consumption';
-import { ConsumptionServiceService } from '../consumption-service.service';
+import { Consumption } from '../../models/Consumption/consumption';
+import { ConsumptionServiceService } from '../../services/ConsumptionService/consumption-service.service';
 
 @Component({
   selector: 'app-consumption-list',
@@ -17,20 +17,6 @@ export class ConsumptionListComponent {
   ngOnInit(): void {
     this.consumptionService.getConsumptions().subscribe(data => {
       this.consumptions = data;
-
-
     });
-
-
-    // this.consumptions = [{
-    //   "consumptionDate": "2021-01-01",
-    //   "orderId": 1,
-    //   "orderPrice": 100,
-    //   "actualDiscount": 10,
-    //   "customerEmail": "n"
-      
-    // }]
-    //alert(JSON.stringify(this.consumptions));
-
   }
 }
