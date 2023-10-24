@@ -25,6 +25,7 @@ import { ManageAllProductsComponent } from './components/manage-all-products/man
 import { ManageProductComponent } from './components/manage-product/manage-product.component';
 import { ConsumptionListComponent } from './components/consumption-list/consumption-list.component';
 import { CouponListComponent } from './components/coupon-list/coupon-list.component';
+import { LoginComponent } from './components/login/login.component';
   
 
 @NgModule({
@@ -37,7 +38,8 @@ import { CouponListComponent } from './components/coupon-list/coupon-list.compon
     ManageAllProductsComponent,
     ManageProductComponent,
     ConsumptionListComponent,
-    CouponListComponent
+    CouponListComponent, 
+    LoginComponent
   ],
 
   imports: [
