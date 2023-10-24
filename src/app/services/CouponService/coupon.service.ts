@@ -9,6 +9,8 @@ import { HttpParams } from '@angular/common/http';
 
 export class CouponService {
 
+  private baseUrl : string = 'http://localhost:51608/coupons'
+
   constructor(private http:HttpClient) { }
 
   calculateDiscountOnInvoice(invoiceAmount: number, couponCode: string): Observable<number> {
@@ -16,7 +18,7 @@ export class CouponService {
       .set('invoiceAmount', invoiceAmount)
       .set('couponCode', couponCode);
   
-    return this.http.get<number>('http://localhost:51828/coupons/calculate-discount', { params: params }).pipe(
+    return this.http.get<number>(`${this.baseUrl}/calculate-discount`, { params: params }).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })

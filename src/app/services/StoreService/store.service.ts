@@ -10,7 +10,7 @@ import { Store } from 'src/app/models/Store/store';
 
 export class StoreService {
 
-  private baseUrl : string = 'http://localhost:51581/store'
+  private baseUrl : string = 'http://localhost:51638/store'
 
   constructor(private http:HttpClient) { }
 

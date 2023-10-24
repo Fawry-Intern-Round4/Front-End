@@ -2,7 +2,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
 import { StoreHomeComponent } from './components/store-home/store-home.component';
 import { ViewStoresComponent } from './components/view-stores/view-stores.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
