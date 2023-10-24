@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Coupon } from '../coupon';
-import { CouponService } from '../coupon.service';
+import { Coupon } from '../../models/Coupon/coupon';
 import { HttpHeaders } from '@angular/common/http';
+import { CouponService } from 'src/app/services/CouponService/coupon.service';
 
 @Component({
   selector: 'app-coupon-list',
