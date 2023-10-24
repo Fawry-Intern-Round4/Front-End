@@ -20,6 +20,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { ViewStoresComponent } from './components/view-stores/view-stores.component';
 import { StoreHomeComponent } from './components/store-home/store-home.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { ManageAllProductsComponent } from './components/manage-all-products/manage-all-products.component';
+import { ManageProductComponent } from './components/manage-product/manage-product.component';
   
 
 @NgModule({
@@ -27,7 +30,10 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     AppComponent,
     ViewStoresComponent,
     StoreHomeComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    OrderHistoryComponent,
+    ManageAllProductsComponent,
+    ManageProductComponent
   ],
 
   imports: [

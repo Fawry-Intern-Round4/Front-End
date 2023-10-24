@@ -9,10 +9,25 @@ import { OrderRequestModel } from 'src/app/models/OrderRequestModel/order-reques
 })
 export class OrderService {
 
-  private baseUrl : string = 'http://localhost:51696/order'
+  private baseUrl : string = 'http://localhost:51636/order'
 
   constructor(private http:HttpClient) { }
 
+  getAllOrders() : Observable<Order[]>{
+    return this.http.get<Order[]>(`${this.baseUrl}`)
+  }
+
+  getOrdersByGuestEmail(email: string) : Observable<Order[]>{
+    return this.http.get<Order[]>(`${this.baseUrl}/${email}`)
+  }
+
+  getOrdersByDateRange(from: string, to: string) : Observable<Order[]>{
+    let params = new HttpParams()
+      .set('from', from)
+      .set('to', to);
+    return this.http.get<Order[]>(`${this.baseUrl}`, {params: params})
+  }
+  
   createOrder(couponCode: HttpParams, orderRequestModel: OrderRequestModel): Observable<Order | HttpErrorResponse> {
     return this.http.post<Order>(`${this.baseUrl}`, orderRequestModel, { params: couponCode }).pipe(
       catchError((error: HttpErrorResponse) => {
