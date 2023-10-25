@@ -1,0 +1,18 @@
+
+<div class="container">
+    <div class="header">
+      <button class="add-store-btn" routerLink="/admin/manage/stores/add">Add Store</button>
+      <button class="add-stock-btn" routerLink="/admin/manage/stocks/add">Add Stock</button>
+      <button class="add-stock-btn" routerLink="/admin/manage/stocks">Stock History</button>
+
+    </div>
+    <div class="grid">
+      <div *ngFor="let store of stores" class="store-row">
+        <div class="store-info">
+          <h2>{{ store.storeName }}</h2>
+          <p><strong>Store ID:</strong> {{ store.storeId }}</p>
+          <p><strong>Store Location:</strong> {{ store.location }}</p>
+        </div>
+      </div>
+    </div>
+</div>
