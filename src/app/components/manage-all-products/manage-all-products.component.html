@@ -1,6 +1,6 @@
 <div class="container">
     <div class="header">
-      <button class="add-product-btn" routerLink="/manage/products/add">Add Product</button>
+      <button class="add-product-btn" routerLink="/admin/manage/products/add">Add Product</button>
     </div>
     <div class="grid">
       <div *ngFor="let product of products" class="product-row">
@@ -11,7 +11,7 @@
           <p><strong>Code:</strong> {{ product.code }}</p>
           <p><strong>Description:</strong> {{ product.description }}</p>
           <p><strong>Price:</strong> {{ product.price }}</p>
-          <button class="edit-product-btn" routerLink="/manage/products/{{product.id}}">Edit Product</button>
+          <button class="edit-product-btn" routerLink="/admin/manage/products/{{product.id}}">Edit Product</button>
         </div>
       </div>
     </div>

@@ -29,9 +29,7 @@ export class ManageProductComponent {
           this.selectedProduct = product;
         },
         error: (error: HttpErrorResponse) => {
-          if (error.error.message == Messages.PRODUCT_NOT_FOUND) {
-            this.router.navigateByUrl('manage/products');
-          }
+          this.router.navigateByUrl('admin/manage/products');
         }
       });
     } else {
@@ -48,7 +46,7 @@ export class ManageProductComponent {
         }
       },
       complete: () => {
-        this.router.navigateByUrl('manage/products/all');
+        this.router.navigateByUrl('admin/manage/products');
       }
     });
   }
@@ -61,7 +59,7 @@ export class ManageProductComponent {
         }
       },
       complete: () => {
-        this.router.navigateByUrl('manage/products/all');
+        this.router.navigateByUrl('admin/manage/products');
       }
     });
   }
