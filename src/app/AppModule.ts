@@ -24,7 +24,10 @@ import { AddStoreComponent } from './components/add-store/add-store.component';
 import { AddStockComponent } from './components/add-stock/add-stock.component';
 import { StockHistoryComponent } from './components/stock-history/stock-history.component';
 import { StoreService } from './services/StoreService/store.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
   
+  const ngxsConfig = NgxsModule.forRoot([CartState]);
 
 @NgModule({
   declarations: [
@@ -41,7 +44,8 @@ import { StoreService } from './services/StoreService/store.service';
     ManageAllStoresComponent,
     AddStoreComponent,
     AddStockComponent,
-    StockHistoryComponent
+    StockHistoryComponent,
+    DashboardComponent
   ],
 
   imports: [
@@ -50,10 +54,7 @@ import { StoreService } from './services/StoreService/store.service';
     HttpClientModule,
     FormsModule,
     RouterModule,
-    
-    NgxsModule.forRoot([
-      CartState,
-    ]),
+    BrowserAnimationsModule,
   ],
   
   providers: [StoreService],

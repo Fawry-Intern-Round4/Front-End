@@ -14,8 +14,10 @@ import { ManageAllStoresComponent } from './components/manage-all-stores/manage-
 import { AddStoreComponent } from './components/add-store/add-store.component';
 import { AddStockComponent } from './components/add-stock/add-stock.component';
 import { StockHistoryComponent } from './components/stock-history/stock-history.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'store/shopping-cart', component: ShoppingCartComponent},
   { path: 'store/:storeId', component: StoreHomeComponent},
   { path: 'store', component: ViewStoresComponent},
