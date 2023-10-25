@@ -15,6 +15,6 @@
     <textarea [(ngModel)]="selectedProduct.description" id="description" name="description"></textarea>
     <label for="price">Price:</label>
     <input [(ngModel)]="selectedProduct.price" id="price" name="price">
-    <button type="submit" routerLink="/manage/products" style="width: auto;">{{ isAddMode ? 'Add Product' : 'Save Changes' }}</button>
+    <button type="submit" routerLink="/admin/manage/products" style="width: auto;">{{ isAddMode ? 'Add Product' : 'Save Changes' }}</button>
   </form>
 </div>
