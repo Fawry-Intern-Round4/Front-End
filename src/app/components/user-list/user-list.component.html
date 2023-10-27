@@ -4,8 +4,12 @@
 
 
 <div class="card">
+  <!-- Add a search bar input field -->
+  <input class="custom-search" pInputText placeholder="Search by ID or Username" (input)="filterUsers($event)" />
+
+
   <p-table
-    [value]="users"
+    [value]="filteredUsers"
     [paginator]="true"
     [rows]="rows"
     [showCurrentPageReport]="true"

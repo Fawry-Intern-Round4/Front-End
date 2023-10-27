@@ -11,6 +11,8 @@ import { UserService } from 'src/app/services/UserService/user.service';
 export class UserListComponent implements OnInit {
 
   users: User[] = [];
+  filteredUsers: User[] = []; // Initialize a filteredUsers array
+
   first = 0;
   rows = 10;
 
@@ -27,6 +29,7 @@ export class UserListComponent implements OnInit {
           role: user.role,
           enable: user.enable
         }));
+        this.filteredUsers = this.users; // Initialize filteredUsers with all users
       },
       (error) => {
         console.error('Error fetching user data:', error);
@@ -54,5 +57,14 @@ export class UserListComponent implements OnInit {
   pageChange(event: { first: number; rows: number; }) {
     this.first = event.first;
     this.rows = event.rows;
+  }
+
+  // Add a method to filter users based on the input value
+  filterUsers(event: Event): void {
+    const searchValue = (event.target as HTMLInputElement).value;
+    const lowerCaseSearchValue = searchValue.toLowerCase();
+    this.filteredUsers = this.users.filter(user =>
+      user.id.toString().includes(lowerCaseSearchValue) || user.username.toLowerCase().includes(lowerCaseSearchValue)
+    );
   }
 }

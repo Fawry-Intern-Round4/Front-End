@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,YAAa;EACX,KAAK,EAAE,KAAK;;AAGd,qBAAsB;EACpB,KAAK,EAAE,GAAG",
+"mappings": "AAAA,YAAa;EACX,KAAK,EAAE,KAAK;;AAGd,qBAAsB;EACpB,KAAK,EAAE,GAAG;;AAGZ,cAAe;EACb,aAAa,EAAE,IAAI",
 "sources": ["user-list.component.scss"],
 "names": [],
 "file": "user-list.component.css"
