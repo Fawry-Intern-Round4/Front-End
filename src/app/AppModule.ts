@@ -27,7 +27,6 @@ import { StoreService } from './services/StoreService/store.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
   
-  const ngxsConfig = NgxsModule.forRoot([CartState]);
 
 @NgModule({
   declarations: [
@@ -55,6 +54,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     FormsModule,
     RouterModule,
     BrowserAnimationsModule,
+
+    NgxsModule.forRoot([
+      CartState,
+    ]),
   ],
   
   providers: [StoreService],
