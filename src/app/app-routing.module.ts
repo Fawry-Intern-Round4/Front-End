@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import {NewUserFormComponent} from "./components/new-user-form/new-user-form.component";
+import {UserListComponent} from "./components/user-list/user-list.component";
 
 import { StoreHomeComponent } from './components/store-home/store-home.component';
 import { ViewStoresComponent } from './components/view-stores/view-stores.component';
@@ -23,6 +25,9 @@ const routes: Routes = [
   { path: 'store', component: ViewStoresComponent},
 
   { path: 'admin/login', component: LoginComponent},
+
+  {path: 'admin/manage/users', component: UserListComponent },
+  {path: 'admin/manage/users/create', component: NewUserFormComponent},
 
   { path: 'admin/manage/stores', component: ManageAllStoresComponent},
   { path: 'admin/manage/stores/add', component: AddStoreComponent},

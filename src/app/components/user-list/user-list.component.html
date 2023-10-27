@@ -1,0 +1,50 @@
+<div class="card flex justify-content-center" style="padding-bottom: 5px">
+  <p-button label="Create new User" icon="pi pi-plus" iconPos="left" routerLink="/create-user"></p-button>
+</div>
+
+
+<div class="card">
+  <!-- Add a search bar input field -->
+  <input class="custom-search" pInputText placeholder="Search by ID or Username" (input)="filterUsers($event)" />
+
+
+  <p-table
+    [value]="filteredUsers"
+    [paginator]="true"
+    [rows]="rows"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    (onPage)="pageChange($event)"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width:25%">ID</th>
+        <th style="width:25%">Username</th>
+        <th style="width:25%">Role</th>
+        <th style="width:25%">Status</th>
+        <th style="width:25%">Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.role }}</td>
+        <td class="{{ user.enable ? 'user-status' : 'user-status-inactive' }}">{{ getUserStatus(user) }}</td>
+        <td>
+          <p-button
+            (click)="activateDeactivateUser(user)"
+            label="{{ getUserButtonLabel(user) }}"
+          ></p-button>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="5">No users found.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

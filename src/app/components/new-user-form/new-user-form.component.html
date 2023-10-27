@@ -1,0 +1,58 @@
+<div class="create-user-container flex justify-content-center align-items-center">
+  <form [formGroup]="createUserForm" (ngSubmit)="submitDetails()">
+    <p-card header="Create new User" class="create-user">
+
+      <div class="field">
+        <label for="username">Username</label>
+
+        <input
+          id="username"
+          type="text"
+          pInputText
+          formControlName="username"
+          class="w-full"
+          name="username"
+          placeholder="Type your username"
+        />
+
+        <small
+          *ngIf="username.invalid && (username.dirty || username.touched)"
+          class="block p-error"
+        >
+          Username must be between 2 to 30 characters
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+
+        <input
+          id="password"
+          type="password"
+          pInputText
+          formControlName="password"
+          class="w-full"
+          name="password"
+          placeholder="Type your password"
+        />
+
+        <small
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="block p-error"
+        >
+          <div>Password must be between 5 to 15 characters</div>
+        </small>
+      </div>
+
+      <p-button
+        label="Submit"
+        styleClass="w-full"
+        [disabled]="createUserForm.invalid"
+        type="submit"
+        routerLink="/"
+      ></p-button>
+    </p-card>
+  </form>
+</div>
+
+

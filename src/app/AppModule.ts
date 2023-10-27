@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +9,11 @@ import { NgxsModule } from '@ngxs/store';
 import { CartState } from './services/CartService/cart.state';
 
 import { AppComponent } from './app.component';
+import {ButtonModule} from 'primeng/button';
+import {CardModule} from "primeng/card";
+import {InputTextModule} from "primeng/inputtext";
+import {MessageService} from "primeng/api";
+import {TableModule} from "primeng/table";
 
 import { ViewStoresComponent } from './components/view-stores/view-stores.component';
 import { StoreHomeComponent } from './components/store-home/store-home.component';
@@ -23,9 +28,10 @@ import { ManageAllStoresComponent } from './components/manage-all-stores/manage-
 import { AddStoreComponent } from './components/add-store/add-store.component';
 import { AddStockComponent } from './components/add-stock/add-stock.component';
 import { StockHistoryComponent } from './components/stock-history/stock-history.component';
-import { StoreService } from './services/StoreService/store.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { NewUserFormComponent } from './components/new-user-form/new-user-form.component';
   
 
 @NgModule({
@@ -44,7 +50,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AddStoreComponent,
     AddStockComponent,
     StockHistoryComponent,
-    DashboardComponent
+    DashboardComponent,
+    UserListComponent,
+    NewUserFormComponent
   ],
 
   imports: [
@@ -54,13 +62,18 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     FormsModule,
     RouterModule,
     BrowserAnimationsModule,
-
+    ButtonModule,
+    CardModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    TableModule,
+    
     NgxsModule.forRoot([
       CartState,
     ]),
   ],
   
-  providers: [StoreService],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
