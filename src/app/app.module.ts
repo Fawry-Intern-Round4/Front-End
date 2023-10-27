@@ -7,7 +7,6 @@ import {UserListComponent} from './components/user-list/user-list.component';
 import {ButtonModule} from 'primeng/button';
 import {NewUserFormComponent} from './components/new-user-form/new-user-form.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {ButtonComponent} from './components/button/button.component';
 import {CardModule} from "primeng/card";
 import {InputTextModule} from "primeng/inputtext";
 import {HttpClientModule} from "@angular/common/http";
@@ -19,8 +18,7 @@ import {TableModule} from "primeng/table";
   declarations: [
     AppComponent,
     UserListComponent,
-    NewUserFormComponent,
-    ButtonComponent,
+    NewUserFormComponent
   ],
   imports: [
     BrowserModule,
