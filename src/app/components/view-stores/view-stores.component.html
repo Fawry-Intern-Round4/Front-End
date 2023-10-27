@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="store-grid">
+    <div class="store-card" *ngFor="let store of stores">
+      <a routerLink="/store/{{store.storeId}}">
+        <h2>{{store.storeName}}</h2>
+        <p>{{store.location}}</p>
+      </a>
+    </div>
+  </div>
+</div>
+

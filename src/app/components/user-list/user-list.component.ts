@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
-import { User } from '../../interfaces/User';
-import {UserService} from "../../services/user.service";
+import { User } from '../../models/User/User';
+import { UserService } from 'src/app/services/UserService/user.service';
 
 @Component({
   selector: 'app-user-list',

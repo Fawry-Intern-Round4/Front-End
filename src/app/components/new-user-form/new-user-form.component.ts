@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
-import {CreateUser} from "../../interfaces/CreateUser";
-import {UserService} from "../../services/user.service";
+import {CreateUser} from "../../models/CreateUser/CreateUser";
+import { UserService } from 'src/app/services/UserService/user.service';
 
 @Component({
   selector: 'app-new-user-form',

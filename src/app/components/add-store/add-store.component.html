@@ -1,0 +1,16 @@
+
+<div>
+    <h1 style="margin-top: 10px;">Add Store</h1>
+    <form (ngSubmit)="addStore()">
+      <label for="storeName">Store Name:</label>
+      <input [(ngModel)]="selectedStore.storeName">
+      
+      <label for="storeLocation">Store Location:</label>
+      <input [(ngModel)]="selectedStore.location">
+
+      <div *ngIf="addStoreError" class="alert alert-danger" role="alert">{{ addStoreError }} </div>
+
+      <button type="submit" routerLink="/admin/manage/stores" style="width: auto;">Add Store</button>
+    </form>
+</div>
+  
