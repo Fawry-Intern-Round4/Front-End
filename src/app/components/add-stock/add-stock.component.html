@@ -1,16 +1,17 @@
 
 <h1 style="margin-top: 10px;">Add Stock</h1>
 <form (ngSubmit)="addStock()">
-  <label>Product Id:</label>
-  <input [(ngModel)]="stock.productId" type="number">
-  
-  <label>Store Id:</label>
-  <input [(ngModel)]="stock.storeId" type="number">
 
-  <label>Product Quantity:</label>
-  <input [(ngModel)]="stock.quantity" type="number">
+  <label for="productId">Product Id:</label>
+  <input [(ngModel)]="stock.productId" id="productId" type="number" name="productId">
 
-  <div *ngIf="addStockError" class="alert alert-danger" role="alert">{{ addStockError }} </div>
+  <label for="storeId">Store Id:</label>
+  <input [(ngModel)]="stock.storeId" id="storeId" type="number" name="storeId">
 
-  <button type="submit" routerLink="/admin/manage/stores" style="width: auto;">Add Stock to Store</button>
+  <label for="quantity">Product Quantity:</label>
+  <input [(ngModel)]="stock.quantity" id="quantity" type="number" name="quantity">
+
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+
+  <button type="submit" style="width: auto;">Add Stock to Store</button>
 </form>

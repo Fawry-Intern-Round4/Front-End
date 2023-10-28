@@ -11,14 +11,16 @@
         <p class="product-description">{{product.description}}</p>
         <p class="product-price">{{product.price | currency}}</p>
         <div class="add-to-cart"> 
-        <button *ngIf="cartService.getCartItem(product.id, store.storeId)" (click)="cartService.incrementProductQuantity(product.id, store.storeId)" class="quantity-button">+</button>
-        <span *ngIf="cartService.getCartItem(product.id, store.storeId)" class="quantity">{{cartService.getCartItem(product.id, store.storeId).quantity}}</span>
-        <button *ngIf="cartService.getCartItem(product.id, store.storeId)" (click)="cartService.decrementProductQuantity(product.id, store.storeId)" class="quantity-button">-</button>
+        <button *ngIf="cartService.getCartItem(product.id, store.id)" (click)="cartService.incrementProductQuantity(product.id, store.id)" class="quantity-button">+</button>
+        <span *ngIf="cartService.getCartItem(product.id, store.id)" class="quantity">{{cartService.getCartItem(product.id, store.id).quantity}}</span>
+        <button *ngIf="cartService.getCartItem(product.id, store.id)" (click)="cartService.decrementProductQuantity(product.id, store.id)" class="quantity-button">-</button>
         <button 
           class="cart-button" 
-          (click)="cartService.updateShoppingCart(product.id, store.storeId, product.name,product.price, product.image)">
-            {{ cartService.getCartItem(product.id, store.storeId) ? 'Remove from Cart' : 'Add to Cart' }}
+          (click)="cartService.updateShoppingCart(product.id, store.id, product.name,product.price, product.image)">
+            {{ cartService.getCartItem(product.id, store.id) ? 'Remove from Cart' : 'Add to Cart' }}
         </button>
       </div>
     </div>
 </div>
+
+<div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }} </div>

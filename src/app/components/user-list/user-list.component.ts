@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
 import { User } from '../../models/User/User';
 import { UserService } from 'src/app/services/UserService/user.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -16,7 +18,9 @@ export class UserListComponent implements OnInit {
   first = 0;
   rows = 10;
 
-  constructor(private userService: UserService, private primengConfig: PrimeNGConfig) { }
+  errorMessage: string | null = null;
+
+  constructor(private userService: UserService, private primengConfig: PrimeNGConfig, private router: Router) { }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
@@ -31,8 +35,8 @@ export class UserListComponent implements OnInit {
         }));
         this.filteredUsers = this.users; // Initialize filteredUsers with all users
       },
-      (error) => {
-        console.error('Error fetching user data:', error);
+      (error: HttpErrorResponse) => {
+        this.errorMessage = error.error.message;
       }
     );
   }
@@ -40,9 +44,23 @@ export class UserListComponent implements OnInit {
   activateDeactivateUser(user: User): void {
     user.enable = !user.enable;
     if(user.enable) {
-      this.userService.activateUser(user.id);
+      this.userService.activateUser(user.id).subscribe({
+        error: (error: HttpErrorResponse) => {
+          this.errorMessage = error.error.message;
+        },
+        complete : () => {
+          this.router.navigateByUrl('admin/manage/users');
+        }
+      });
     } else {
-      this.userService.deactivateUser(user.id);
+      this.userService.deactivateUser(user.id).subscribe({
+        error: (error: HttpErrorResponse) => {
+          this.errorMessage = error.error.message;
+        },
+        complete : () => {
+          this.router.navigateByUrl('admin/manage/users');
+        }
+      });
     }
   }
 

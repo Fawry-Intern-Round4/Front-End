@@ -1,5 +1,5 @@
 <div class="card flex justify-content-center" style="padding-bottom: 5px">
-  <p-button label="Create new User" icon="pi pi-plus" iconPos="left" routerLink="/create-user"></p-button>
+  <p-button label="Create new User" icon="pi pi-plus" iconPos="left" routerLink="/admin/manage/users/create"></p-button>
 </div>
 
 
@@ -48,3 +48,5 @@
     </ng-template>
   </p-table>
 </div>
+
+<div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }} </div>

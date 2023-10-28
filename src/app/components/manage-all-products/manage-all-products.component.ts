@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/ProductService/product.service';
 import { Product } from 'src/app/models/Product/product';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-manage-all-products',
@@ -9,6 +10,7 @@ import { Product } from 'src/app/models/Product/product';
 })
 export class ManageAllProductsComponent implements OnInit{
   products : Product[] = [];
+  errorMessage: string | null = null;
 
   constructor(private service : ProductService){}
 
@@ -19,9 +21,8 @@ export class ManageAllProductsComponent implements OnInit{
   getAllProducts() {
     this.service.getAllProducts().subscribe({
       next: (data) => { this.products = data },
-      error: (error) => {
-        this.products = [];
-        console.log(error);
+      error: (error : HttpErrorResponse) => {
+        this.errorMessage =  error.error.message;
       }
     });
   }  

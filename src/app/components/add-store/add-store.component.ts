@@ -10,19 +10,15 @@ import { StoreService } from 'src/app/services/StoreService/store.service';
   styleUrls: ['./add-store.component.css']
 })
 export class AddStoreComponent {
-  selectedStore!: Store;
-  addStoreError: string | null = null;
+  store!: Store;
+  errorMessage: string | null = null;
 
   constructor(private storeService: StoreService, private router: Router) { }
 
-  ngOnInit() {
-    this.selectedStore = new Store();
-  }
-
   addStore() {
-    this.storeService.addStore(this.selectedStore).subscribe({
+    this.storeService.addStore(this.store).subscribe({
       error: (error: HttpErrorResponse) => {
-        this.addStoreError = error.error.message;
+        this.errorMessage = error.error.message;
       },
       complete: () => {
         this.router.navigateByUrl('admin/manage/stores');

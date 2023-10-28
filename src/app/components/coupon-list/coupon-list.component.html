@@ -31,3 +31,6 @@
 </table>
 <button class="btn btn-primary" (click)="createCoupon()">Create Coupon</button>
 
+<div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }} </div>
+<div *ngIf="errorMessage" class="alert-success">{{ errorMessage }} </div>
+

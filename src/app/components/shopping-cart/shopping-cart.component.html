@@ -28,12 +28,12 @@
           <input type="text" id="couponCode" (change)="applyCouponCode($event)">
         </div>
         <div class="form-field">
-          <p *ngIf="couponErrorMessage" class="alert alert-danger" role="alert">{{couponErrorMessage}}</p>
-          <p>Invoice amount: <span id="invoiceAmount" [style.text-decoration]="invoiceAmountAfterDiscount && !couponErrorMessage ? 'line-through' : 'none'">
+          <p *ngIf="errorMessage" class="alert alert-danger" role="alert">{{errorMessage}}</p>
+          <p>Invoice amount: <span id="invoiceAmount" [style.text-decoration]="invoiceAmountAfterDiscount && !errorMessage ? 'line-through' : 'none'">
             {{invoiceAmount | currency}}
           </span>
           </p>
-          <p *ngIf="invoiceAmountAfterDiscount && !couponErrorMessage">Invoice amount after coupon discount: <span style="color: green; font-weight: 18px;">{{invoiceAmountAfterDiscount| currency}}  </span></p>
+          <p *ngIf="invoiceAmountAfterDiscount && !errorMessage">Invoice amount after coupon discount: <span style="color: green; font-weight: 18px;">{{invoiceAmountAfterDiscount| currency}}  </span></p>
         </div>
         <div class="form-field">
           <label for="email">Email</label>

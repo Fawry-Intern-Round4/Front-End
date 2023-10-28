@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StoreService } from 'src/app/services/StoreService/store.service';
 import { Store } from 'src/app/models/Store/store';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-manage-all-stores',
@@ -9,6 +10,7 @@ import { Store } from 'src/app/models/Store/store';
 })
 export class ManageAllStoresComponent implements OnInit {
   stores : Store[] = [];
+  errorMessage: string | null = null;
 
   constructor(private service : StoreService){}
 
@@ -19,9 +21,8 @@ export class ManageAllStoresComponent implements OnInit {
   getAllStores() {
     this.service.getAllStores().subscribe({
       next: (data) => { this.stores = data },
-      error: (error) => {
-        this.stores = [];
-        console.log(error);
+      error: (error : HttpErrorResponse) => {
+        this.errorMessage =  error.error.message;
       }
     });
   }  

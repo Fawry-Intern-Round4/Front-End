@@ -1,7 +1,7 @@
 
 <div class="filter">
-    <input type="number" [(ngModel)]="storeId" placeholder=" Enter store id" />
-    <button (click)="setStoreId(storeId)">View Stocks for Store</button>    
+    <input type="number" [(ngModel)]="id" placeholder=" Enter store id" />
+    <button (click)="setid(id)">View Stocks for Store</button>    
 </div>
 
 <div class="container">
@@ -19,10 +19,12 @@
           <tr *ngFor="let stock of stockHistory">
               <td>{{ stock.consumptionId }}</td>
               <td>{{ stock.productId }}</td>
-              <td>{{ stock.store.storeId }}</td>
+              <td>{{ stock.store.id }}</td>
               <td>{{ stock.quantityConsumed }}</td>
               <td>{{ stock.dateConsumed }}</td>
           </tr>
         </tbody>
       </table>
 </div>
+
+<div *ngIf="errorMessage" class="alert alert-danger" role="alert">{{ errorMessage }} </div>

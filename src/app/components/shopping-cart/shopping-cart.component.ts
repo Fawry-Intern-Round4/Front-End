@@ -8,6 +8,7 @@ import { TransactionRequestModel } from 'src/app/models/TransactionRequestModel/
 import { OrderRequestItem } from 'src/app/models/OrderRequestItem/order-request-item';
 import { OrderRequestModel } from 'src/app/models/OrderRequestModel/order-request-model';
 import { OrderService } from 'src/app/services/OrderService/order.service';
+import { Discount } from 'src/app/models/Discount/discount';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -17,7 +18,7 @@ import { OrderService } from 'src/app/services/OrderService/order.service';
 
 export class ShoppingCartComponent {
   invoiceAmountAfterDiscount: number = 0;
-  couponErrorMessage: string | null = null;
+  errorMessage: string | null = null;
   invoiceAmount: number = 0;
   couponCode: string = '';
 
@@ -40,24 +41,24 @@ export class ShoppingCartComponent {
     this.invoiceAmount = invoiceAmount;
 
     if (this.couponCode != null && this.couponCode !== '') {
-      this.couponService.calculateDiscountOnInvoice(invoiceAmount, this.couponCode).subscribe({
-        next: (couponDiscount) => {
-          this.invoiceAmountAfterDiscount = invoiceAmount - couponDiscount;
+      this.couponService.calculateDiscountOnInvoice(this.guestEmail, invoiceAmount, this.couponCode).subscribe({
+        next: (discount) => {
+          this.invoiceAmountAfterDiscount = invoiceAmount - discount.actualDiscount;
         },
         error: (error: HttpErrorResponse) => {
-          this.couponErrorMessage = error.error.message;
+          this.errorMessage = error.error.message;
         },
       });
     } 
   }
 
-  incrementProductQuantity(productId: number, storeId : number) {
-    this.cartService.incrementProductQuantity(productId, storeId);
+  incrementProductQuantity(productId: number, id : number) {
+    this.cartService.incrementProductQuantity(productId, id);
     this.calculateInvoiceAmount();
   }
   
-  decrementProductQuantity(productId: number, storeId : number) {
-    this.cartService.decrementProductQuantity(productId, storeId);
+  decrementProductQuantity(productId: number, id : number) {
+    this.cartService.decrementProductQuantity(productId, id);
     this.calculateInvoiceAmount();
   }  
 
@@ -65,13 +66,12 @@ export class ShoppingCartComponent {
     const target = event.target as HTMLInputElement;
     this.couponCode = target.value;
     this.invoiceAmountAfterDiscount = 0;
-    this.couponErrorMessage = null;
+    this.errorMessage = null;
     this.calculateInvoiceAmount();
   }  
 
   createOrder() {
     const transactionRequestModel = new TransactionRequestModel(
-      this.guestEmail,
       this.cardNumber,
       this.cvv
     );
@@ -80,12 +80,10 @@ export class ShoppingCartComponent {
       return new OrderRequestItem(item.productId, item.storeId, item.quantity);
     });
   
-    const orderRequestModel = new OrderRequestModel(transactionRequestModel, orderRequestItems);
+    const orderRequestModel = new OrderRequestModel(this.couponCode, this.guestEmail, transactionRequestModel, orderRequestItems);
   
-    let couponCodeParam = new HttpParams().set('couponCode', this.couponCode);
-
-    this.orderService.createOrder(couponCodeParam, orderRequestModel).subscribe({
-      next: (response) => {
+    this.orderService.createOrder(orderRequestModel).subscribe({
+      complete: () => {
         this.router.navigateByUrl('store');
       },
       error: (error: HttpErrorResponse) => {

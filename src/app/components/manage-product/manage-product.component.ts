@@ -1,7 +1,6 @@
 
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Messages } from '../../messages.enum';
 
 import { ProductService } from '../../services/ProductService/product.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -16,7 +15,7 @@ import { Product } from 'src/app/models/Product/product';
 export class ManageProductComponent {
   selectedProduct!: Product;
   isAddMode = false;
-  productCodeError: string | null = null;
+  errorMessage: string | null = null;
 
   constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router) { }
 
@@ -41,9 +40,7 @@ export class ManageProductComponent {
   addProduct() {
     this.productService.addProduct(this.selectedProduct).subscribe({
       error: (error: HttpErrorResponse) => {
-        if (error.error.message == Messages.PRODUCT_CODE_ALREADY_EXISTS) {
-          this.productCodeError = error.error.message;
-        }
+          this.errorMessage = error.error.message;
       },
       complete: () => {
         this.router.navigateByUrl('admin/manage/products');
@@ -54,9 +51,7 @@ export class ManageProductComponent {
   updateProductInfo() {
     this.productService.updateProduct(this.selectedProduct).subscribe({
       error: (error: HttpErrorResponse) => {
-        if (error.error.message == Messages.PRODUCT_CODE_ALREADY_EXISTS) {
-          this.productCodeError = error.error.message;
-        }
+        this.errorMessage = error.error.message;      
       },
       complete: () => {
         this.router.navigateByUrl('admin/manage/products');

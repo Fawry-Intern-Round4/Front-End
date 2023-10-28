@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { OrderRequestItem } from 'src/app/models/OrderRequestItem/order-request-item';
-import { StoreService } from 'src/app/services/StoreService/store.service';
+import { StockService } from 'src/app/services/StockService/stock.service';
 
 @Component({
   selector: 'app-add-stock',
@@ -11,18 +11,18 @@ import { StoreService } from 'src/app/services/StoreService/store.service';
 })
 export class AddStockComponent {
   stock!: OrderRequestItem;
-  addStockError: string | null = null;
+  errorMessage: string | null = null;
 
-  constructor(private storeService: StoreService, private router: Router) { }
+  constructor(private stockService: StockService, private router: Router) { }
 
   ngOnInit() {
     this.stock = new OrderRequestItem();
   }
 
   addStock() {
-    this.storeService.addStock(this.stock).subscribe({
-      error: (error: HttpErrorResponse) => {
-        this.addStockError = error.error.message;
+    this.stockService.addStock(this.stock).subscribe({
+      error: (error : HttpErrorResponse) => {
+        this.errorMessage =  error.error.message;
       },
       complete: () => {
         this.router.navigateByUrl('admin/manage/stores');

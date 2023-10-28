@@ -21,13 +21,13 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'store/shopping-cart', component: ShoppingCartComponent},
-  { path: 'store/:storeId', component: StoreHomeComponent},
+  { path: 'store/:id', component: StoreHomeComponent},
   { path: 'store', component: ViewStoresComponent},
 
   { path: 'admin/login', component: LoginComponent},
 
-  {path: 'admin/manage/users', component: UserListComponent },
-  {path: 'admin/manage/users/create', component: NewUserFormComponent},
+  { path: 'admin/manage/users', component: UserListComponent },
+  { path: 'admin/manage/users/create', component: NewUserFormComponent},
 
   { path: 'admin/manage/stores', component: ManageAllStoresComponent},
   { path: 'admin/manage/stores/add', component: AddStoreComponent},

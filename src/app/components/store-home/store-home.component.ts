@@ -4,7 +4,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { StoreService } from '../../services/StoreService/store.service';
 import { Store } from '../../models/Store/store';
-import { Messages } from '../../messages.enum';
 import { Product } from '../../models/Product/product';
 import { CartService } from 'src/app/services/CartService/cart.service';
 
@@ -18,28 +17,29 @@ export class StoreHomeComponent {
 
   store!: Store;
   products: Product[] = [];
+  errorMessage: string | null = null;
 
   constructor (private storeService: StoreService, public cartService: CartService, private route: ActivatedRoute, private router: Router){}
 
   ngOnInit() {
-    const storeId = this.route.snapshot.paramMap.get('storeId');
-    if (storeId) {
-      this.storeService.getStoreById(Number(storeId)).subscribe({
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.storeService.getStoreById(Number(id)).subscribe({
         next: (store) => {
           this.store = store;
-          this.getStoreProducts(Number(storeId));
+          this.getStoreProducts(Number(id));
         },
-        error: (error: HttpErrorResponse) => {
+        error: () => {
           this.router.navigateByUrl('/store');
         }
       });
     } 
   }
 
-  getStoreProducts(storeId : number){
-    this.storeService.getStoreProducts(storeId).subscribe({
-      error: (error: HttpErrorResponse) => {
-        this.products = []
+  getStoreProducts(id : number){
+    this.storeService.getStoreProducts(id).subscribe({
+      error: (error : HttpErrorResponse) => {
+        this.errorMessage =  error.error.message;
       },
       next: (products) => {
         this.products = products;

@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {CreateUser} from "../../models/CreateUser/CreateUser";
 import { UserService } from 'src/app/services/UserService/user.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-user-form',
@@ -9,6 +11,8 @@ import { UserService } from 'src/app/services/UserService/user.service';
   styleUrls: ['./new-user-form.component.scss']
 })
 export class NewUserFormComponent {
+
+  errorMessage: string | null = null;
 
   createUserForm = this.fb.group({
     username: [
@@ -24,6 +28,7 @@ export class NewUserFormComponent {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
+    private router: Router
   ) {
   }
 
@@ -36,6 +41,13 @@ export class NewUserFormComponent {
   }
 
   submitDetails() {
-    this.userService.createUser(this.createUserForm.value as CreateUser);
+    this.userService.createUser(this.createUserForm.value as CreateUser).subscribe({
+      error : (error : HttpErrorResponse) => {
+        this.errorMessage = error.error.message;
+      },
+      complete : () => {
+        this.router.navigateByUrl('admin/manage/users');
+      }
+    });
   }
 }

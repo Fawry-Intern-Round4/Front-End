@@ -37,3 +37,16 @@ tr:nth-child(even) {
   border-radius: 4px; 
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
+
+.alert {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
