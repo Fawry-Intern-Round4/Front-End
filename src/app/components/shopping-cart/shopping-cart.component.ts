@@ -17,6 +17,9 @@ import { Discount } from 'src/app/models/Discount/discount';
 })
 
 export class ShoppingCartComponent {
+
+  orderRequestModel: OrderRequestModel = new OrderRequestModel();
+
   invoiceAmountAfterDiscount: number = 0;
   errorMessage: string | null = null;
   invoiceAmount: number = 0;
@@ -25,7 +28,6 @@ export class ShoppingCartComponent {
   guestEmail: string = '';
   cardNumber: string = '';
   cvv: string = '';
-  createOrderErrorMessage: string | null = null;
 
   constructor(private http: HttpClient, public cartService: CartService, 
     private couponService: CouponService, private orderService : OrderService, private router: Router) {}
@@ -79,15 +81,19 @@ export class ShoppingCartComponent {
     const orderRequestItems = this.cartService.getCartItems().map(item => {
       return new OrderRequestItem(item.productId, item.storeId, item.quantity);
     });
-  
-    const orderRequestModel = new OrderRequestModel(this.couponCode, this.guestEmail, transactionRequestModel, orderRequestItems);
-  
-    this.orderService.createOrder(orderRequestModel).subscribe({
+
+    if (this.couponCode) {
+      this.orderRequestModel = new OrderRequestModel(this.guestEmail, transactionRequestModel, orderRequestItems, this.couponCode);
+    } else {
+      this.orderRequestModel = new OrderRequestModel(this.guestEmail, transactionRequestModel, orderRequestItems);
+    }
+
+    this.orderService.createOrder(this.orderRequestModel).subscribe({
       complete: () => {
         this.router.navigateByUrl('store');
       },
       error: (error: HttpErrorResponse) => {
-        this.createOrderErrorMessage = error.error.message;
+        this.errorMessage = error.error.message;
       },
     });
   }

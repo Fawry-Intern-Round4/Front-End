@@ -3,11 +3,16 @@ import { OrderRequestItem } from "../OrderRequestItem/order-request-item";
 import { TransactionRequestModel } from "../TransactionRequestModel/transaction-request-model";
 
 export class OrderRequestModel {
+    guestEmail? : string
+    transactionRequestModel? : TransactionRequestModel
+    orderRequestItems? : OrderRequestItem[]
+    couponCode? : string
+
     constructor(
-        public couponCode : string,
-        public guestEmail : string,
-        public transactionRequestModel : TransactionRequestModel,
-        public orderRequestItems : OrderRequestItem[]
+        guestEmail? : string,
+        transactionRequestModel? : TransactionRequestModel,
+        orderRequestItems? : OrderRequestItem[],
+        couponCode? : string,
     ){
         this.couponCode = couponCode;
         this.guestEmail = guestEmail;

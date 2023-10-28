@@ -10,7 +10,7 @@ import { StoreService } from 'src/app/services/StoreService/store.service';
   styleUrls: ['./add-store.component.css']
 })
 export class AddStoreComponent {
-  store!: Store;
+  store: Store = new Store();
   errorMessage: string | null = null;
 
   constructor(private storeService: StoreService, private router: Router) { }
