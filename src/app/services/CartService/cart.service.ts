@@ -11,12 +11,12 @@ export class CartService {
 
   constructor(private ngxsStore: NgxsStore) { }
 
-  incrementProductQuantity(productId: number, storeId : number) {
-    this.getCartItem(productId, storeId).quantity++;
+  incrementProductQuantity(productId: number, id : number) {
+    this.getCartItem(productId, id).quantity++;
   }
   
-  decrementProductQuantity(productId: number, storeId : number) {
-    const item = this.getCartItem(productId, storeId);
+  decrementProductQuantity(productId: number, id : number) {
+    const item = this.getCartItem(productId, id);
     if (item.quantity === 1) {
       this.ngxsStore.dispatch(new RemoveFromCart(productId)); 
     } 
@@ -27,7 +27,8 @@ export class CartService {
     if (this.getCartItem(productId, storeId)) {
       this.ngxsStore.dispatch(new RemoveFromCart(productId));
     } else {
-      this.ngxsStore.dispatch(new AddToCart({ productId, storeId, quantity: 1 , name, price, image}));
+      const orderRequestItem = new OrderRequestItem(productId, storeId, 1, name, price, image);
+      this.ngxsStore.dispatch(new AddToCart(orderRequestItem));
     }    
   }
 
@@ -35,7 +36,7 @@ export class CartService {
     return this.ngxsStore.selectSnapshot(state => state.cart);
   }
   
-  getCartItem(productId: number, storeId : number): OrderRequestItem {
-    return this.ngxsStore.selectSnapshot(state => state.cart.find((item: OrderRequestItem) => item.productId === productId && item.storeId == storeId));
+  getCartItem(productId: number, id : number): OrderRequestItem {
+    return this.ngxsStore.selectSnapshot(state => state.cart.find((item: OrderRequestItem) => item.productId === productId && item.storeId == id));
   }
 }

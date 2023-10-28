@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
-import { OrderRequestItem } from 'src/app/models/OrderRequestItem/order-request-item';
+import { HttpAuthAndContentTypeHeaders } from 'src/app/common';
 import { Product } from 'src/app/models/Product/product';
 import { ProductConsumption } from 'src/app/models/ProductConsumption/product-consumption';
 import { Store } from 'src/app/models/Store/store';
@@ -20,24 +20,24 @@ export class StoreService {
     return this.http.get<Store[]>(`${this.baseUrl}`)
   }
 
-  getStoreById(storeId: number): Observable<Store> {
-    return this.http.get<Store>(`${this.baseUrl}/${storeId}`).pipe(
+  getStoreById(id: number): Observable<Store> {
+    return this.http.get<Store>(`${this.baseUrl}/${id}`, {headers: HttpAuthAndContentTypeHeaders}).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
     );
   }   
 
-  getStoreProducts(storeId: number): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/${storeId}/product`).pipe(
+  getStoreProducts(id: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.baseUrl}/${id}/product`, {headers: HttpAuthAndContentTypeHeaders}).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
     );
   }  
 
-  getStoreInfo(storeId : number) : Observable<Store> {   
-    return this.http.get<Store>(`${this.baseUrl}/${storeId}`).pipe(
+  getStoreInfo(id : number) : Observable<Store> {   
+    return this.http.get<Store>(`${this.baseUrl}/${id}`, {headers: HttpAuthAndContentTypeHeaders}).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
@@ -45,31 +45,23 @@ export class StoreService {
   }
   
   addStore(store: Store): Observable<Store | HttpErrorResponse> {
-    return this.http.post<Store>(`${this.baseUrl}`, store).pipe(
-      catchError((error: HttpErrorResponse) => {
-        return throwError(() => error);
-      })
-    );
-  }
-
-  addStock(OrderRequestItem: OrderRequestItem): Observable<any | HttpErrorResponse> {
-    return this.http.post<any>(`${this.baseUrl}/stock`, OrderRequestItem).pipe(
-      catchError((error: HttpErrorResponse) => {
-        return throwError(() => error);
-      })
-    );
-  }
-
-  getAllProductConsumptions(): Observable<ProductConsumption[]> {
-    return this.http.get<ProductConsumption[]>(`${this.baseUrl}/consumption`).pipe(
+    return this.http.post<Store>(`${this.baseUrl}`, store, {headers: HttpAuthAndContentTypeHeaders}).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
     );
   }
   
-  getProductConsumptionsByStoreId(storeId: number): Observable<ProductConsumption[]> {
-    return this.http.get<ProductConsumption[]>(`${this.baseUrl}/consumption?storeId=${storeId}`).pipe(
+  getAllProductConsumptions(): Observable<ProductConsumption[]> {
+    return this.http.get<ProductConsumption[]>(`${this.baseUrl}/consumption`, {headers: HttpAuthAndContentTypeHeaders}).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
+  
+  getProductConsumptionsByid(id: number): Observable<ProductConsumption[]> {
+    return this.http.get<ProductConsumption[]>(`${this.baseUrl}/consumption?storeId=${id}`, {headers: HttpAuthAndContentTypeHeaders}).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })

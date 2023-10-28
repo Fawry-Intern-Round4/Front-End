@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from 'src/app/models/User/User';
 import { CreateUser } from 'src/app/models/CreateUser/CreateUser';
+import { HttpAuthAndContentTypeHeaders } from 'src/app/common';
 
 @Injectable({
   providedIn: 'root'
@@ -24,18 +25,18 @@ export class UserService {
   }
 
   getUsersList(): Observable<User[]> {
-    return this.http.get<User[]>('https://652f22c60b8d8ddac0b239fc.mockapi.io/user');
+    return this.http.get<User[]>(`${this.apiUrl}`, { headers: HttpAuthAndContentTypeHeaders });
   }
 
   createUser(user: CreateUser): Observable<Object> {
-    return this.http.post('https://652f22c60b8d8ddac0b239fc.mockapi.io/user', user);
+    return this.http.post(`${this.apiUrl}`, user, { headers: HttpAuthAndContentTypeHeaders });
   }
 
   activateUser(id: number): Observable<Object> {
-    return this.http.put(`https://652f22c60b8d8ddac0b239fc.mockapi.io/user/activation/${id}`, {});
+    return this.http.put(`${this.apiUrl}/activation/${id}`, null, { headers: HttpAuthAndContentTypeHeaders });
   }
 
   deactivateUser(id: number): Observable<Object> {
-    return this.http.put(`https://652f22c60b8d8ddac0b239fc.mockapi.io/user/deactivation/${id}`, {});
+    return this.http.put(`${this.apiUrl}/deactivation/${id}`, null, { headers: HttpAuthAndContentTypeHeaders });
   }
 }

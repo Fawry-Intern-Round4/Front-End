@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { HttpParams } from '@angular/common/http';
 import { Coupon } from 'src/app/models/Coupon/coupon';
+import { HttpAuthAndContentTypeHeaders } from 'src/app/common';
+import { Discount } from 'src/app/models/Discount/discount';
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +12,16 @@ import { Coupon } from 'src/app/models/Coupon/coupon';
 
 export class CouponService {
 
-  private baseUrl : string = 'http://localhost:51608/coupons'
-  private baseUr2 = "https://mocki.io/v1/b5f09c64-fe0e-42c6-9ad8-86135642e321";
+  private baseUrl : string = 'http://a90e27b8aa51d4c869ae95f65b2af55f-2100024466.us-east-1.elb.amazonaws.com:8080/coupon'
   constructor(private http:HttpClient) { }
 
-  calculateDiscountOnInvoice(invoiceAmount: number, couponCode: string): Observable<number> {
+  calculateDiscountOnInvoice(customerEmail: string, invoiceAmount: number, couponCode: string): Observable<Discount> {
     let params = new HttpParams()
-      .set('invoiceAmount', invoiceAmount)
-      .set('couponCode', couponCode);
-  
-    return this.http.get<number>(`${this.baseUrl}/calculate-discount`, { params: params }).pipe(
+      .set('code', couponCode)
+      .set('customerEmail', customerEmail)
+      .set('orderPrice', invoiceAmount)
+      
+    return this.http.get<Discount>(`${this.baseUrl}/discount`, { params: params, headers: HttpAuthAndContentTypeHeaders }).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
@@ -27,6 +29,6 @@ export class CouponService {
   }  
 
   getCouponsList(): Observable<Coupon[]> {
-    return this.http.get<Coupon[]>(`${this.baseUr2}`);
+    return this.http.get<Coupon[]>(`${this.baseUrl}`, { headers: HttpAuthAndContentTypeHeaders });
   }
 }
