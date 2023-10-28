@@ -24,7 +24,7 @@
                 <tr>
                   <th>ID</th>
                   <th>Guest Email</th>
-                  <th>Coupon ID</th>
+                  <th>Coupon Code</th>
                   <th>Amount</th>
                   <th>Created At</th>
                   <th>Order Items</th>
@@ -34,23 +34,21 @@
                 <tr *ngFor="let order of orders">
                   <td>{{order.id}}</td>
                   <td>{{order.guestEmail}}</td>
-                  <td>{{order.couponID}}</td>
+                  <td>{{order.couponCode}}</td>
                   <td>{{order.amount}}</td>
                   <td>{{order.createdAt | date: 'short'}}</td>
                   <td>
                     <table class="table table-striped table-bordered">
                       <thead>
                         <tr>
-                          <th>Product Photo</th>
-                          <th>Product Name</th>
+                          <th>Product ID</th>
                           <th>Price</th>
                           <th>Quantity</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr *ngFor="let item of order.orderItems">
-                          <td><img src="{{item.productPhoto}}" alt="Product Photo" width="70px" height="70px" ></td>
-                          <td>{{item.productName}}</td>
+                          <td>{{item.productId}}</td>
                           <td>{{item.price}}</td>
                           <td>{{item.quantity}}</td>
                         </tr>

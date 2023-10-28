@@ -4,7 +4,7 @@ export class Order {
   constructor(
     public id: number,
     public guestEmail: string,
-    public couponID: number,
+    public couponCode: string,
     public amount: number,
     public createdAt: Date,
     public orderItems: OrderItem[]

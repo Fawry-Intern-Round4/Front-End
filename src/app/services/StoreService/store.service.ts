@@ -12,7 +12,7 @@ import { Store } from 'src/app/models/Store/store';
 
 export class StoreService {
 
-  private baseUrl : string = 'http://localhost:56741/store'
+  private baseUrl : string = 'http://a90e27b8aa51d4c869ae95f65b2af55f-2100024466.us-east-1.elb.amazonaws.com:8080/store'
 
   constructor(private http:HttpClient) { }
 
@@ -21,7 +21,7 @@ export class StoreService {
   }
 
   getStoreById(storeId: number): Observable<Store> {
-    return this.http.get<Store>(`${this.baseUrl}/get?storeId=${storeId}`).pipe(
+    return this.http.get<Store>(`${this.baseUrl}/${storeId}`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
@@ -29,7 +29,7 @@ export class StoreService {
   }   
 
   getStoreProducts(storeId: number): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/products?storeId=${storeId}`).pipe(
+    return this.http.get<Product[]>(`${this.baseUrl}/${storeId}/product`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
@@ -37,7 +37,7 @@ export class StoreService {
   }  
 
   getStoreInfo(storeId : number) : Observable<Store> {   
-    return this.http.get<Store>(`${this.baseUrl}/get?storeId=${storeId}`).pipe(
+    return this.http.get<Store>(`${this.baseUrl}/${storeId}`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
@@ -53,7 +53,7 @@ export class StoreService {
   }
 
   addStock(OrderRequestItem: OrderRequestItem): Observable<any | HttpErrorResponse> {
-    return this.http.post<any>(`${this.baseUrl}/addStock`, OrderRequestItem).pipe(
+    return this.http.post<any>(`${this.baseUrl}/stock`, OrderRequestItem).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
@@ -61,7 +61,7 @@ export class StoreService {
   }
 
   getAllProductConsumptions(): Observable<ProductConsumption[]> {
-    return this.http.get<ProductConsumption[]>(`${this.baseUrl}/getAllProductConsumptions`).pipe(
+    return this.http.get<ProductConsumption[]>(`${this.baseUrl}/consumption`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
@@ -69,7 +69,7 @@ export class StoreService {
   }
   
   getProductConsumptionsByStoreId(storeId: number): Observable<ProductConsumption[]> {
-    return this.http.get<ProductConsumption[]>(`${this.baseUrl}/getProductConsumptionsByStoreId?storeId=${storeId}`).pipe(
+    return this.http.get<ProductConsumption[]>(`${this.baseUrl}/consumption?storeId=${storeId}`).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })

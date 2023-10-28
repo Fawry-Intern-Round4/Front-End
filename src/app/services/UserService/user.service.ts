@@ -10,7 +10,7 @@ import { CreateUser } from 'src/app/models/CreateUser/CreateUser';
 })
 export class UserService {
 
-  private apiUrl = 'http://localhost:8080/user';
+  private apiUrl = 'http://a90e27b8aa51d4c869ae95f65b2af55f-2100024466.us-east-1.elb.amazonaws.com:8080/user';
 
   constructor(private http: HttpClient) {}
 

@@ -1,7 +1,7 @@
 <!-- manage-product.component.html -->
 <div *ngIf="selectedProduct || isAddMode">
   <h1>{{ isAddMode ? 'Add Product' : 'Edit Product' }}</h1>
-  <form (ngSubmit)="isAddMode ? addProduct() : updateProductInfo()">
+  <form #myForm="ngForm" (ngSubmit)="isAddMode ? addProduct() : updateProductInfo()">
     <label for="name">Name:</label>
     <input [(ngModel)]="selectedProduct.name" id="name" name="name">
     <label for="image">Image Link:</label>
@@ -15,6 +15,6 @@
     <textarea [(ngModel)]="selectedProduct.description" id="description" name="description"></textarea>
     <label for="price">Price:</label>
     <input [(ngModel)]="selectedProduct.price" id="price" name="price">
-    <button type="submit" routerLink="/admin/manage/products" style="width: auto;">{{ isAddMode ? 'Add Product' : 'Save Changes' }}</button>
+    <button type="submit" style="width: auto;">{{ isAddMode ? 'Add Product' : 'Save Changes' }}</button>
   </form>
 </div>

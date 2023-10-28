@@ -9,7 +9,7 @@ import { Product } from 'src/app/models/Product/product';
 
 export class ProductService {
 
-  private baseUrl : string = 'http://localhost:54341/product'
+  private baseUrl : string = 'http://a90e27b8aa51d4c869ae95f65b2af55f-2100024466.us-east-1.elb.amazonaws.com:8080/product'
 
   constructor(private http:HttpClient) { }
 

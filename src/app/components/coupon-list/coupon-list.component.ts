@@ -10,10 +10,10 @@ import { CouponService } from 'src/app/services/CouponService/coupon.service';
 })
 export class CouponListComponent {
   createCoupon() {
-
-
-    const apiUrl = '/your-api-endpoint'; // Replace with the actual endpoint URL
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const apiUrl = 'http://a90e27b8aa51d4c869ae95f65b2af55f-2100024466.us-east-1.elb.amazonaws.com:8080/coupon'; // Replace with the actual endpoint URL
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json'
+    , 'Authorization': 'Bearer ' + localStorage.getItem('token')
+  });
 
     this.http.post(apiUrl,  { headers }).subscribe(
       (response: any) => {
