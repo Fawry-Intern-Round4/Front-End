@@ -20,6 +20,7 @@ export class LoginComponent {
             .subscribe(
                 (response) => {
                     this.message = 'Login successful!';
+                    localStorage.removeItem('token');
                     localStorage.setItem('token', response.token);
                     this.router.navigate(['/dashboard']);
                 },
