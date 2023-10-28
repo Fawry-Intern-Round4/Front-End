@@ -17,6 +17,7 @@ import { AddStoreComponent } from './components/add-store/add-store.component';
 import { AddStockComponent } from './components/add-stock/add-stock.component';
 import { StockHistoryComponent } from './components/stock-history/stock-history.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {CouponFormComponent} from "./components/coupon-form/coupon-form.component";
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -43,6 +44,7 @@ const routes: Routes = [
 
   { path: 'admin/manage/coupon/add', component: CouponListComponent},
   { path: 'admin/manage/coupon/consumption', component: ConsumptionListComponent},
+  { path: 'admin/coupon/create', component: CouponFormComponent }
 ];
 
 @NgModule({

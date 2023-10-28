@@ -1,0 +1,20 @@
+.invalid-feedback {
+  font-size: 12px;
+  color: red;
+  display: block;
+  border: 1px solid red;
+  padding: 5px;
+  margin-top: 0.25rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-check-label {
+  padding-left: 1rem;
+}
+
+.input-group-text {
+  background-color: #e9ecef;
+}

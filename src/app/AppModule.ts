@@ -32,7 +32,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { NewUserFormComponent } from './components/new-user-form/new-user-form.component';
-  
+import {CouponFormComponent} from "./components/coupon-form/coupon-form.component";
+
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { NewUserFormComponent } from './components/new-user-form/new-user-form.c
     ManageAllProductsComponent,
     ManageProductComponent,
     ConsumptionListComponent,
-    CouponListComponent, 
+    CouponListComponent,
     LoginComponent,
     ManageAllStoresComponent,
     AddStoreComponent,
@@ -52,7 +53,8 @@ import { NewUserFormComponent } from './components/new-user-form/new-user-form.c
     StockHistoryComponent,
     DashboardComponent,
     UserListComponent,
-    NewUserFormComponent
+    NewUserFormComponent,
+    CouponFormComponent
   ],
 
   imports: [
@@ -67,12 +69,12 @@ import { NewUserFormComponent } from './components/new-user-form/new-user-form.c
     ReactiveFormsModule,
     InputTextModule,
     TableModule,
-    
+
     NgxsModule.forRoot([
       CartState,
     ]),
   ],
-  
+
   providers: [MessageService],
   bootstrap: [AppComponent]
 })
