@@ -4,9 +4,13 @@ import { TransactionRequestModel } from "../TransactionRequestModel/transaction-
 
 export class OrderRequestModel {
     constructor(
+        public couponCode : string,
+        public guestEmail : string,
         public transactionRequestModel : TransactionRequestModel,
         public orderRequestItems : OrderRequestItem[]
     ){
+        this.couponCode = couponCode;
+        this.guestEmail = guestEmail;
         this.transactionRequestModel = transactionRequestModel;
         this.orderRequestItems = orderRequestItems;
     }

@@ -10,6 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ViewStoresComponent{
   stores : Store[] = [];
+  errorMessage: string | null = null;
 
   constructor(private storeService : StoreService){}
 
@@ -20,9 +21,9 @@ export class ViewStoresComponent{
   getAllStores(){
     this.storeService.getAllStores().subscribe({
       next: (stores) => { this.stores = stores; }, 
-      error: (error) => {
-        this.stores = [];
-      }
+      error: (error : HttpErrorResponse) => {
+        this.errorMessage =  error.error.message;
+      },
     })
   }
 }
