@@ -21,7 +21,7 @@ export class CouponService {
       .set('customerEmail', customerEmail)
       .set('orderPrice', invoiceAmount)
       
-    return this.http.get<Discount>(`${this.baseUrl}/discount`, { params: params, headers: HttpAuthAndContentTypeHeaders }).pipe(
+    return this.http.get<Discount>(`${this.baseUrl}/discount`, { params: params, headers: HttpAuthAndContentTypeHeaders() }).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
@@ -29,6 +29,6 @@ export class CouponService {
   }  
 
   getCouponsList(): Observable<Coupon[]> {
-    return this.http.get<Coupon[]>(`${this.baseUrl}`, { headers: HttpAuthAndContentTypeHeaders });
+    return this.http.get<Coupon[]>(`${this.baseUrl}`, { headers: HttpAuthAndContentTypeHeaders() });
   }
 }

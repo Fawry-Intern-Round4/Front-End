@@ -43,6 +43,7 @@ const routes: Routes = [
 
   { path: 'admin/manage/coupon/add', component: CouponListComponent},
   { path: 'admin/manage/coupon/consumption', component: ConsumptionListComponent},
+  { path: '**', redirectTo: 'store'}
 ];
 
 @NgModule({

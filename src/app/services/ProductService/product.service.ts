@@ -15,11 +15,11 @@ export class ProductService {
   constructor(private http:HttpClient) { }
 
   getAllProducts() : Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.baseUrl}`, {headers: HttpAuthAndContentTypeHeaders})
+    return this.http.get<Product[]>(`${this.baseUrl}`, {headers: HttpAuthAndContentTypeHeaders()})
   }
 
   getProductInfo(id : number) : Observable<Product> {   
-    return this.http.get<Product>(`${this.baseUrl}/${id}`, {headers: HttpAuthAndContentTypeHeaders}).pipe(
+    return this.http.get<Product>(`${this.baseUrl}/${id}`, {headers: HttpAuthAndContentTypeHeaders()}).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
@@ -27,7 +27,7 @@ export class ProductService {
   }
 
   addProduct(product: Product): Observable<Product | HttpErrorResponse> {
-    return this.http.post<Product>(`${this.baseUrl}`, product, {headers: HttpAuthAndContentTypeHeaders}).pipe(
+    return this.http.post<Product>(`${this.baseUrl}`, product, {headers: HttpAuthAndContentTypeHeaders()}).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
@@ -35,7 +35,7 @@ export class ProductService {
   }
   
   updateProduct(product: Product): Observable<Product | HttpErrorResponse> {
-    return this.http.put<Product>(`${this.baseUrl}/${product.id}`, product, {headers: HttpAuthAndContentTypeHeaders}).pipe(
+    return this.http.put<Product>(`${this.baseUrl}/${product.id}`, product, {headers: HttpAuthAndContentTypeHeaders()}).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })

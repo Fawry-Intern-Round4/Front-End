@@ -15,6 +15,6 @@ export class ConsumptionServiceService {
   }
 
   getConsumptions(): Observable<Consumption[]> {
-    return this.httpClient.get<Consumption[]>(`${this.baseUrl}`, {headers: HttpAuthAndContentTypeHeaders});
+    return this.httpClient.get<Consumption[]>(`${this.baseUrl}`, {headers: HttpAuthAndContentTypeHeaders()});
   }
 }

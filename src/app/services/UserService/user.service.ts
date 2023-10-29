@@ -25,18 +25,18 @@ export class UserService {
   }
 
   getUsersList(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}`, { headers: HttpAuthAndContentTypeHeaders });
+    return this.http.get<User[]>(`${this.apiUrl}`, { headers: HttpAuthAndContentTypeHeaders() });
   }
 
   createUser(user: CreateUser): Observable<Object> {
-    return this.http.post(`${this.apiUrl}`, user, { headers: HttpAuthAndContentTypeHeaders });
+    return this.http.post(`${this.apiUrl}`, user, { headers: HttpAuthAndContentTypeHeaders() });
   }
 
   activateUser(id: number): Observable<Object> {
-    return this.http.put(`${this.apiUrl}/activation/${id}`, null, { headers: HttpAuthAndContentTypeHeaders });
+    return this.http.put(`${this.apiUrl}/activation/${id}`, null, { headers: HttpAuthAndContentTypeHeaders() });
   }
 
   deactivateUser(id: number): Observable<Object> {
-    return this.http.put(`${this.apiUrl}/deactivation/${id}`, null, { headers: HttpAuthAndContentTypeHeaders });
+    return this.http.put(`${this.apiUrl}/deactivation/${id}`, null, { headers: HttpAuthAndContentTypeHeaders() });
   }
 }

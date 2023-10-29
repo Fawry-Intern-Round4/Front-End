@@ -15,22 +15,22 @@ export class OrderService {
   constructor(private http:HttpClient) { }
 
   getAllOrders() : Observable<Order[]>{
-    return this.http.get<Order[]>(`${this.baseUrl}`,{headers: HttpAuthAndContentTypeHeaders})
+    return this.http.get<Order[]>(`${this.baseUrl}`,{headers: HttpAuthAndContentTypeHeaders()})
   }
 
   getOrdersByGuestEmail(email: string) : Observable<Order[]>{
-    return this.http.get<Order[]>(`${this.baseUrl}/${email}`,{headers: HttpAuthAndContentTypeHeaders})
+    return this.http.get<Order[]>(`${this.baseUrl}/${email}`,{headers: HttpAuthAndContentTypeHeaders()})
   }
 
   getOrdersByDateRange(from: string, to: string) : Observable<Order[]>{
     let params = new HttpParams()
       .set('from', from)
       .set('to', to);
-    return this.http.get<Order[]>(`${this.baseUrl}`, {params: params, headers: HttpAuthAndContentTypeHeaders})
+    return this.http.get<Order[]>(`${this.baseUrl}`, {params: params, headers: HttpAuthAndContentTypeHeaders()})
   }
   
   createOrder(orderRequestModel: OrderRequestModel): Observable<Order | HttpErrorResponse> {
-    return this.http.post<Order>(`${this.baseUrl}`, orderRequestModel, {headers: HttpAuthAndContentTypeHeaders}).pipe(
+    return this.http.post<Order>(`${this.baseUrl}`, orderRequestModel, {headers: HttpAuthAndContentTypeHeaders()}).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })

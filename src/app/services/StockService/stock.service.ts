@@ -14,7 +14,7 @@ export class StockService {
   constructor(private http : HttpClient) { }
 
   addStock(OrderRequestItem: OrderRequestItem): Observable<any | HttpErrorResponse> {
-    return this.http.post<any>(`${this.baseUrl}`, OrderRequestItem, {headers: HttpAuthAndContentTypeHeaders}).pipe(
+    return this.http.post<any>(`${this.baseUrl}`, OrderRequestItem, {headers: HttpAuthAndContentTypeHeaders()}).pipe(
       catchError((error: HttpErrorResponse) => {
         return throwError(() => error);
       })
