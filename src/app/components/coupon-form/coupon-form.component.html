@@ -1,0 +1,77 @@
+<form [formGroup]="couponForm" (ngSubmit)="onSubmit()" class="container my-5">
+  <div class="form-group row">
+    <label for="remainingUsages" class="col-sm-2 col-form-label">Remaining Usages</label>
+    <div class="col-sm-5">
+      <input type="number" id="remainingUsages" formControlName="remainingUsages" class="form-control">
+      <div *ngIf="couponForm.get('remainingUsages')?.invalid && couponForm.get('remainingUsages')?.touched"
+           class="invalid-feedback">Remaining usages must be positive
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="expiryDate" class="col-sm-2 col-form-label">Expiry Date</label>
+    <div class="col-sm-5">
+      <input type="date" id="expiryDate" formControlName="expiryDate" class="form-control">
+      <div *ngIf="couponForm.get('expiryDate')?.invalid && couponForm.get('expiryDate')?.touched"
+           class="invalid-feedback">Expiry date can't be in the past
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="value" class="col-sm-2 col-form-label">Value</label>
+    <div class="col-sm-5">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" *ngIf="couponForm.get('type')?.value === CouponType.FIXED">$</span>
+          <span class="input-group-text" *ngIf="couponForm.get('type')?.value === CouponType.PERCENTAGE">%</span>
+        </div>
+        <input type="number" id="value" formControlName="value" class="form-control">
+      </div>
+      <div *ngIf="couponForm.get('value')?.invalid && couponForm.get('value')?.touched">
+        <div *ngIf="couponForm.get('value')?.hasError('required')">
+          <div class="invalid-feedback">Value is required.</div>
+        </div>
+        <div *ngIf="couponForm.get('value')?.hasError('min')">
+          <div class="invalid-feedback">Value must be positive.</div>
+        </div>
+        <div *ngIf="couponForm.get('value')?.hasError('maxValueExceeded')">
+          <div *ngIf="couponForm.get('type')?.value === CouponType.FIXED">
+            <div class="invalid-feedback">Value can't exceed $1000.</div>
+          </div>
+          <div *ngIf="couponForm.get('type')?.value === CouponType.PERCENTAGE">
+            <div class="invalid-feedback">Value can't exceed 100%.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label for="type" class="col-sm-2 col-form-label">Coupon Type</label>
+    <div class="col-sm-5">
+      <select id="type" formControlName="type" class="form-control">
+        <option [value]="CouponType.PERCENTAGE">Percentage</option>
+        <option [value]="CouponType.FIXED">Fixed</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="active" class="col-sm-2 col-form-label"></label>
+    <div class="col-sm-5">
+      <div class="form-check">
+        <label class="form-check-label" for="active">Activate Coupon</label>
+        <input type="checkbox" id="active" formControlName="active" class="form-check-input">
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-7 offset-sm-2">
+      <button type="submit" [disabled]="couponForm.invalid" class="btn btn-primary">Create new Coupon</button>
+    </div>
+  </div>
+</form>

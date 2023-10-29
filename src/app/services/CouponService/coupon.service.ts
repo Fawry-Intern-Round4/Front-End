@@ -31,4 +31,27 @@ export class CouponService {
   getCouponsList(): Observable<Coupon[]> {
     return this.http.get<Coupon[]>(`${this.baseUrl}`, { headers: HttpAuthAndContentTypeHeaders() });
   }
+
+  createCoupon(coupon: Coupon): Observable<Coupon | HttpErrorResponse> {
+    return this.http.post<Coupon>(`${this.baseUrl}`, coupon, { headers: HttpAuthAndContentTypeHeaders() }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
+  deactivateCoupon(couponCode: string): Observable<Coupon | HttpErrorResponse> {
+    return this.http.put<Coupon>(`${this.baseUrl}/deactivation/${couponCode}`, {},{ headers: HttpAuthAndContentTypeHeaders() }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
+  activateCoupon(couponCode: string): Observable<Coupon | HttpErrorResponse> {
+    return this.http.put<Coupon>(`${this.baseUrl}/activation/${couponCode}`, {},{ headers: HttpAuthAndContentTypeHeaders() }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        return throwError(() => error);
+      })
+    );
+  }
 }
