@@ -1,71 +1,73 @@
-
 .store-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px;
 }
-  
+
 .store-card {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 40px;
-    text-decoration: none;
-    color: black;
-    transition: transform 0.3s ease;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .store-card h2 {
-    margin: 0 0 10px 0;
-    font-size: 24px;
+  margin: 0;
+  font-size: 24px;
 }
 
 .store-card p {
-    margin: 0;
-    font-size: 16px;
+  margin: 0;
+  font-size: 16px;
 }
 
 .store-card h2, .store-card p {
-    color: black;
+  color: black;
 }
 
 .store-card:hover {
-    transform: scale(1.05); 
+  transform: scale(1.05);
 }
 
 .alert {
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-  }
-  
-  .alert-danger {
-    color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
-  }
-  .store-card {
-    margin: 10px;
-  }
-  
-  .store-photo {
-    width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  .store-card {
-    margin: 10px;
-  }
-  
-  .store-photo {
-    width: 100%;
-    max-height: 200px;
-    object-fit: cover;
-    border-radius: 5px;
-  }
-  
-  .ui-card .p-card-title {
-    border: none;
-  }  
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.store-card {
+  margin: 10px;
+}
+
+.store-photo {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.store-card {
+  margin: 10px;
+}
+
+.ui-card .p-card-title {
+  border: none;
+}
+
+.store-card a {
+  text-decoration: none;
+}
